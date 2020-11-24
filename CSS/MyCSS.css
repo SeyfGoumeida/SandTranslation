@@ -91,7 +91,7 @@ div.diapo {
     height: 600%;
     position: relative;
     animation-name: animation;
-    /*-webkit-animation: animation 12s ease-in-out infinite;*/
+    -webkit-animation: animation 12s ease-in-out infinite;
 }
 
 div.diapo:hover {
@@ -406,7 +406,7 @@ a:hover {
     border-radius: 16px;
 }
 
-#button {
+#buttons {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 10px;
@@ -594,4 +594,69 @@ div#sc-edprofile input[type="submit"]:hover {
     width: 200px;
     float: right;
     background-color: rgb(186, 251, 120);
+}
+
+
+/*Rating*/
+
+#button {
+    border: 0;
+    background: transparent;
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+#button:hover,
+#button:hover+#button,
+#button:hover+#button+#button,
+#button:hover+#button+#button+#button,
+#button:hover+#button+#button+#button+#button {
+    color: rgb(247, 242, 0);
+}
+
+.Dash {
+    padding-left: 22%;
+    padding-top: 7%;
+    height: 1000px;
+}
+
+.Dashul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 5.6%;
+    width: 20%;
+    background-color: #162936;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    border-style: solid;
+    border-color: #dbb466;
+}
+
+.Dashli a {
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.Dashli a.active {
+    background-color: #dbb466;
+    color: white;
+}
+
+.Dashli a:hover:not(.active) {
+    background-color: #dbb466;
+    color: white;
+}
+
+.Dashnav {
+    position: fixed;
+    border-style: solid;
+    border-color: #dbb466;
+    z-index: 1;
+    background-color: #162936;
 }

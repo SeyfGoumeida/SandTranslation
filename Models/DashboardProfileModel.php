@@ -1,5 +1,6 @@
 <?php
-class RecrutementModel
+
+class DashboardProfileModel
 {
     
     private $servername = "localhost";
@@ -10,12 +11,23 @@ class RecrutementModel
     private $result;
     private $email;
     private $psw;
+    private $nom;
+    private $prenom;
+    private $wilaya;
+    private $commune;
+    private $phone;
+    private $fax;
+    private $adresse;
+  
 
     public function db_connect()
     {
-      
+
+        //DataBase connection
+
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->db_name);
-       
+
+        // Check connection
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
@@ -26,32 +38,32 @@ class RecrutementModel
         $this->conn->close();
     }
 
+
+
     public function get_conn()
     {
         return $this->conn;
+
     }
-    public function get_languages()
+    public function get_client($client)
     {
        
         $this->db_connect();
-
-        $data;
+        $sql = "SELECT * FROM `client` WHERE `user`='$client'";
+        $result = $this->get_conn()->query($sql);
         
-    $query = "SELECT * FROM language ";
-
-    $data = $this->conn->query($query);
-    return $data;
+        return $result;
+           
     }
-    public function get_type()
+    public function get_traducteur($traducteur)
     {
        
         $this->db_connect();
-
-        $data;
+        $sql = "SELECT * FROM `traducteur` WHERE `user`='$traducteur'";
+        $result = $this->get_conn()->query($sql);
         
-    $query = "SELECT * FROM type_traduction ";
-
-    $data = $this->conn->query($query);
-    return $data;
+        return $result;
+           
     }
+   
 }

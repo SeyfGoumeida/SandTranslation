@@ -1,5 +1,5 @@
 <?php
-class HomeModel
+class AdminModel
 {
     
     private $servername = "localhost";
@@ -19,9 +19,6 @@ class HomeModel
     private $adresse;
   
 
-
-
-
     public function db_connect()
     {
 
@@ -40,16 +37,7 @@ class HomeModel
         $this->conn->close();
     }
 
-    public function db_article_query($first_try)
-    {
-        if ($first_try) {
-            $sql = "SELECT * FROM `articles` ORDER BY `Date` ASC ";
-            $this->result = $this->conn->query($sql);
-        };
 
-        $row = $this->result->fetch_assoc();
-        return $row;
-    }
 
     public function get_conn()
     {
@@ -78,31 +66,6 @@ class HomeModel
     $_SESSION['type']=$type;
 
 
-    }
-
-    public function get_languages()
-    {
-       
-        $this->db_connect();
-
-        $data;
-        
-    $query = "SELECT * FROM language ";
-
-    $data = $this->conn->query($query);
-    return $data;
-    }
-    public function get_type()
-    {
-       
-        $this->db_connect();
-
-        $data;
-        
-    $query = "SELECT * FROM type_traduction ";
-
-    $data = $this->conn->query($query);
-    return $data;
     }
 
 }

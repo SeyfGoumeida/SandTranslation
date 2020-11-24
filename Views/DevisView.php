@@ -35,7 +35,7 @@ class DevisView
 
         <?php if (isset($_SESSION['email'])) {;?>
         <a href="EditProfil.php"> <img id="profil" src="./Img/Profil.webp" alt="Instagram"></a>
-        <?php } ?>
+        <?php }?>
 
         <a href="linkedin.com"><img id="page" src="./Img/Linkedin.png" alt="Linkedin"></a>
         <a href="facebook.com"> <img id="page" src="./Img/Facebook.png" alt="Facebook"></a>
@@ -69,22 +69,36 @@ class DevisView
             </li>
             <li><a href="./Recrutement.php"> Recrutement </a>
 
+            
+            <?php if (isset($_SESSION['email'])) {;?>
+                <li><a href="./Devis.php">Devis</a>
+
+                </li> 
+            <?php }?>
+            <?php if (isset($_SESSION['traducteur'])) { if ($_SESSION['traducteur']) {;?>
+                <li><a href="./Traduction.php">Tradution</a>
+
+                </li> 
+                <?php }}?>
             </li>
             <li><a href="./Propos.php"> à propos </a>
 
             </li>
 
             <!--------------------logout--------------->
-            <li>
+            
                 <?php if (isset($_SESSION['email'])) {;?>
+                             
+                <li>
                 <form action="php\LogOut.php" method="POST" id="form">
                     <button type="submit" id="logout">Deconnecter</button>
                 </form>
-                <?php } ?>
-            </li>
+                </li>
+                
+                <?php }?>
+           
         </ol>
     </nav>
-
 
     <!------------------------------------Diaporama-------------------------------------------->
     <?php
@@ -103,26 +117,131 @@ class DevisView
 
     <!------------------------------------Articles-------------------------------------------->
     <?php
-    }
-    public function Devis()
+}
+    public function Devis($data, $data1)
     {
-    ?>
+        if ($_SESSION['traducteur'] == 1) {
+            ?>
+    <form action='Models/AccepterModel.php' method='POST'>
 
-    <div class="contenu">
-        
+        <table id="Traduc">
+            <tr>
+                <td> Username </td>
+                <td> Nom </td>
+                <td> Pranom </td>
+                <td> Email </td>
+                <td> Telephone </td>
+                <td> Langue Source </td>
+                <td> Langue Destination </td>
+                <td> Commentaire </td>
+
+
+            </tr>
+
+            <?php
+
+            while ($row = $data->fetch_assoc()) {
+                $username = $row['username'];
+                $nom = $row["nom"];
+                $prenom = $row["prenom"];
+                $email = $row["email"];
+                $lang_src = $row["Lng_src"];
+                $lang_dest = $row["Lng_dest"];
+                $commentaire = $row["commentaire"];
+                $telephone = $row["telephone"];
+                $id = $row['id'];
+                echo '<tr>
+                  <td>' . $username . '</td>
+                  <td>' . $nom . '</td>
+                  <td>' . $prenom . '</td>
+                  <td>' . $email . '</td>
+                  <td>' . $telephone . '</td>
+
+                  <td>' . $lang_src . '</td>
+                  <td>' . $lang_dest . '</td>
+                <td>' . $commentaire . '</td>
+                <td><button type="submit" value="Submit" name=> Accepter </button></td>
+                <input value="' . $id . '" name="id_devis" type="hidden">
+              </tr>';
+            };
+            $data->free();
+
+            ?>
+        </table>
+
+    </form>
 
 
 
-
-    </div>
-
-    <!------------------------------------FOOTER------------------------------------------------>
     <?php
+} else {
+            ?>
+    <form action='Models/SelectionnerTraducteurModel.php' method='POST'>
+
+        <table id="Traduc">
+            <tr>
+                <td> Nom </td>
+                <td> Pranom </td>
+                <td> Email </td>
+                <td> Telephone </td>
+                <td> Langue Source </td>
+                <td> Langue Destination </td>
+                <td> Selectionner Traducteur </td>
+                <td> justificatif </td>
+
+
+            </tr>
+
+            <?php
+
+            while ($row = $data1->fetch_assoc()) {
+                $nom = $row["nom"];
+                $prenom = $row["prenom"];
+                $email = $row["email"];
+                $telephone = $row["telephone"];
+                $lang_src = $row["Lng_src"];
+                $lang_dest = $row["Lng_dest"];
+                $id = $row['id'];
+
+                echo '<tr>
+
+                  <td>' . $nom . '</td>
+                  <td>' . $prenom . '</td>
+                  <td>' . $email . '</td>
+                  <td>' . $telephone . '</td>
+
+                  <td>' . $lang_src . '</td>
+                  <td>' . $lang_dest . '</td>
+                <td>
+                <button type="submit" value="Submit" name="select" > Selectionner </button>
+
+                </td>
+                  <td>
+                <input type="file" value="file" name="file" required>
+                </td>
+
+
+
+                <input value="' . $id . '" name="id_devis" type="hidden">
+
+              </tr>';
+            };
+            $data1->free();
+
+            ?>
+        </table>
+
+    </form>
+
+
+    <?php
+
+        }
     }
     public function Footer()
     {
         ?>
-
+    <!------------------------------------FOOTER------------------------------------------------>
     <footer>
 
 
@@ -138,11 +257,21 @@ class DevisView
             <li><a href="./ListeTraducteur.php">Liste des traducteurs </a>
 
             </li>
-            <li><a href="./Blog.php"> Blog gggg </a>
+            <li><a href="./Blog.php"> Blog </a>
 
             </li>
             <li><a href="./Recrutement.php"> Recrutement </a>
 
+            <?php if (isset($_SESSION['email'])) {;?>
+                <li><a href="./Devis.php">Devis</a>
+
+                </li> 
+            <?php }?>
+            <?php if (isset($_SESSION['traducteur'])) { if ($_SESSION['traducteur']) {;?>
+                <li><a href="./Traduction.php">Tradution</a>
+
+                </li> 
+                <?php }}?>
             </li>
             <li><a href="./Propos.php"> à propos </a>
 

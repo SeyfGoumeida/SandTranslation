@@ -35,7 +35,7 @@ class HomeView
 
         <?php if (isset($_SESSION['email'])) {;?>
         <a href="EditProfil.php"> <img id="profil" src="./Img/Profil.webp" alt="Instagram"></a>
-        <?php } ?>
+        <?php }?>
 
         <a href="linkedin.com"><img id="page" src="./Img/Linkedin.png" alt="Linkedin"></a>
         <a href="facebook.com"> <img id="page" src="./Img/Facebook.png" alt="Facebook"></a>
@@ -69,19 +69,34 @@ class HomeView
             </li>
             <li><a href="./Recrutement.php"> Recrutement </a>
 
+
+            <?php if (isset($_SESSION['email'])) {;?>
+                <li><a href="./Devis.php">Devis</a>
+
+                </li> 
+            <?php }?>
             </li>
+            <?php if (isset($_SESSION['traducteur'])) { if ($_SESSION['traducteur']) {;?>
+                <li><a href="./Traduction.php">Tradution</a>
+
+                </li> 
+                <?php }}?>
             <li><a href="./Propos.php"> à propos </a>
 
             </li>
 
             <!--------------------logout--------------->
-            <li>
+            
                 <?php if (isset($_SESSION['email'])) {;?>
+                             
+                <li>
                 <form action="php\LogOut.php" method="POST" id="form">
                     <button type="submit" id="logout">Deconnecter</button>
                 </form>
-                <?php } ?>
-            </li>
+                </li>
+                
+                <?php }?>
+           
         </ol>
     </nav>
 
@@ -140,23 +155,23 @@ class HomeView
 
         <!------------------------------------Forms-------------------------------------------->
         <?php
-    }
+}
     public function Forms()
     {
         ?>
         <?php if (!isset($_SESSION['email'])) {;?>
 
         <div id="forme">
-            <div id="button">
+            <div id="buttons">
                 <button onclick="form1()">Inscrire</button>
                 <button onclick="form2()">Connecter</button>
             </div>
-
+        
             <?php }?>
 
             <?php
-    }
-    public function Devis($language_src,$language_dest,$type)
+}
+    public function Devis($language_src, $language_dest, $type)
     {
         ?>
             <!-----------------------inscrire pour faire une demande de devis de traduction d’un document  ------------------------>
@@ -168,7 +183,8 @@ class HomeView
 
             <!------------------------------------------Demande de devis----(client)----------------------------------------------->
 
-            <form class="Devis" <?php if (!isset($_SESSION['email'])) {?> style="display:none;" <?php }?> action="/php/Devis.php" method="POST">
+            <form class="Devis" <?php if (!isset($_SESSION['email'])) {?> style="display:none;" <?php }?>
+                action="php/Devis.php" method="POST">
 
                 <h4 style="text-align:center;background-color: #dbb466; color:#162936;">
                     Formulaire pour une demande de devis de traduction d’un document</h4>
@@ -191,36 +207,37 @@ class HomeView
                 <input type="text" placeholder="adresse" name="adr" required>
 
                 <label for="Langues"><b>Langue source : </b></label>
-                <select name="Lng_src[]">
-                <?php   
-                    
-                    while($row=$language_src->fetch_assoc())
-                    
-                    echo '<option value="'.$row['des'].'">'.$row['des'].'</option> ';
-    
-                ?>
-                 </select>
+                <select name="Lng_src">
+                    <?php
 
-                 <label><b>Langue destination: </b></label>
-                
-                <select name="Lng_dest[]">
-                <?php   
+        while ($row = $language_src->fetch_assoc()) {
+            echo '<option value="' . $row['des'] . '">' . $row['des'] . '</option> ';
+        }
 
-                while($row=$language_dest->fetch_assoc())
-                
-                echo '<option value="'.$row['des'].'">'.$row['des'].'</option> ';
-    
-                ?>
+        ?>
+                </select>
+
+                <label><b>Langue destination: </b></label>
+
+                <select name="Lng_dest">
+                    <?php
+
+        while ($row = $language_dest->fetch_assoc()) {
+            echo '<option value="' . $row['des'] . '">' . $row['des'] . '</option> ';
+        }
+
+        ?>
                 </select>
                 <label for="TypeTraduction"><b>Type traduction : </b></label>
                 <select name="type">
-                <?php   
+                    <?php
 
-                while($row=$type->fetch_assoc())
+        while ($row = $type->fetch_assoc()) {
+            echo '<option value="' . $row['des'] . '">' . $row['des'] . '</option> '
 
-                echo '<option value="'.$row['des'].'">'.$row['des'].'</option> '
-
-                ?>
+            ;
+        }
+        ?>
                 </select>
 
                 <label for="Commentaires"><b>Commentaires : </b></label>
@@ -244,7 +261,7 @@ class HomeView
     </div>
 
     <?php
-    }
+}
     public function SignUp()
     {
         ?>
@@ -279,7 +296,7 @@ class HomeView
                 <input type="text" placeholder="Adresse" name="adresse" required>
 
                 <label for="commune"><b>Commune</b></label>
-                <input type="text" placeholder="Commune" name="commune" required>
+                <input type="text" placeholder="commune" name="commune" required>
 
                 <label for="wilaya"><b>Wilaya</b></label>
                 <input type="text" placeholder="Wilaya" name="wilaya" required>
@@ -302,7 +319,7 @@ class HomeView
     </div>
 
     <?php
-    }
+}
     public function SignIn()
     {
         ?>
@@ -365,11 +382,21 @@ class HomeView
             <li><a href="./ListeTraducteur.php">Liste des traducteurs </a>
 
             </li>
-            <li><a href="./Blog.php"> Blog gggg </a>
+            <li><a href="./Blog.php"> Blog </a>
 
             </li>
             <li><a href="./Recrutement.php"> Recrutement </a>
 
+            <?php if (isset($_SESSION['email'])) {;?>
+            <li><a href="./Devis.php">Devis</a>
+
+            </li> 
+            <?php }?>
+            <?php if (isset($_SESSION['traducteur'])) { if ($_SESSION['traducteur']) {;?>
+                <li><a href="./Traduction.php">Tradution</a>
+
+                </li> 
+                <?php }}?>
             </li>
             <li><a href="./Propos.php"> à propos </a>
 
@@ -377,7 +404,7 @@ class HomeView
         </ul>
     </footer>
     <script src='https://www.google.com/recaptcha/api.js'></script>
-</body>
+</body> 
 
 </html>
 <?php

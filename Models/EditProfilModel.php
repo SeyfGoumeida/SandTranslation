@@ -5,11 +5,11 @@ session_start();
  $servername = "localhost";
  $username = "root";
  $password = "";
- $db_name = "tdw_projet";
+ $db_name = "tdw";
 
         $conn = new mysqli($servername, $username, $password, $db_name);
 
-        // Check connection
+      
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -28,10 +28,10 @@ session_start();
         $fax = $_POST['fax'];
         $CV = $_POST['CV'];
         if (isset($_POST['Asser'])) {
-            // Checkbox is selected
+         
             $Asser = '1';
         } else {
-        // Alternate code
+      
         $Asser = '0';
         };
         $justif_asser = $_POST['Justif'];

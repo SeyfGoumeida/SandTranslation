@@ -64,19 +64,35 @@ class TypeTraductionView
         <li ><a href="./Recrutement.php"> Recrutement </a>
         
         </li>
-        <li ><a href="./Propos.php"> à propos </a>
         
+        <?php if (isset($_SESSION['email'])) {;?>
+                <li><a href="./Devis.php">Devis</a>
+
+                </li> 
+        <?php }?>
+        <?php if (isset($_SESSION['traducteur'])) { if ($_SESSION['traducteur']) {;?>
+                <li><a href="./Traduction.php">Tradution</a>
+
+                </li> 
+        <?php }}?>
+        </li>
+        <li><a href="./Propos.php"> à propos </a>
+
         </li>
 
-        <!--------------------logout--------------->
-        <li>
+            <!--------------------logout--------------->
+            
                 <?php if (isset($_SESSION['email'])) {;?>
-                        <form action="php\LogOut.php" method="POST" id="form">
-                            <button type="submit" id="logout">Deconnecter</button>
-                        </form>
-                <?php } ?>
-        </li>
-    </ol>
+                             
+                <li>
+                <form action="php\LogOut.php" method="POST" id="form">
+                    <button type="submit" id="logout">Deconnecter</button>
+                </form>
+                </li>
+                
+                <?php }?>
+           
+        </ol>
     </nav>
 
    
@@ -129,11 +145,21 @@ class TypeTraductionView
             <li ><a href="./ListeTraducteur.php">Liste des traducteurs </a>
             
             </li>
-            <li ><a href="./Blog.php"> Blog gggg </a>
+            <li ><a href="./Blog.php"> Blog</a>
             
             </li>
             <li ><a href="./Recrutement.php"> Recrutement </a>
             
+            <?php if (isset($_SESSION['email'])) {;?>
+                <li><a href="./Devis.php">Devis</a>
+
+                </li> 
+            <?php }?>
+            <?php if (isset($_SESSION['traducteur'])) { if ($_SESSION['traducteur']) {;?>
+                <li><a href="./Traduction.php">Tradution</a>
+
+                </li> 
+                <?php }}?>
             </li>
             <li ><a href="./Propos.php"> à propos </a>
             
