@@ -20,7 +20,7 @@ h6 {
 }
 
 h1 {
-    color: black;
+    color: rgb(255, 255, 255);
     font-size: 50px;
     font-family: 'Oxygen-Bold';
     font-weight: bold;
@@ -437,6 +437,38 @@ a:hover {
 }
 
 
+/*-----------------admin-------------------*/
+
+#logoutadmin {
+    float: right;
+}
+
+
+/* Create two equal columns that floats next to each other */
+
+.column {
+    float: left;
+    width: 47%;
+    height: 600px;
+    /* Should be removed. Only for demonstration */
+    text-align: center;
+}
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#dashpict {
+    width: 25%;
+    height: 60%;
+}
+
+
 /*-----------------captcha----------------*/
 
 
@@ -618,15 +650,12 @@ div#sc-edprofile input[type="submit"]:hover {
 
 .Dash {
     padding-left: 22%;
-    padding-top: 7%;
-    height: 1000px;
 }
 
 .Dashul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-top: 5.6%;
     width: 20%;
     background-color: #162936;
     position: fixed;
@@ -639,8 +668,9 @@ div#sc-edprofile input[type="submit"]:hover {
 .Dashli a {
     display: block;
     color: rgb(255, 255, 255);
-    padding: 8px 16px;
+    padding: 20px 25px;
     text-decoration: none;
+    text-align: center;
 }
 
 .Dashli a.active {

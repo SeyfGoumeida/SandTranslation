@@ -1,5 +1,5 @@
 <?php
-class DashboardClientModel
+class DashboardDocumentModel
 {
     
     private $servername = "localhost";
@@ -37,21 +37,40 @@ class DashboardClientModel
         $this->conn->close();
     }
 
+
+
     public function get_conn()
     {
         return $this->conn;
     }
-    public function get_client()
+    public function get_document()
+    {
+        $this->db_connect();
+        $conn = $this->get_conn(); 
+        $query = "SELECT * FROM `traducteur` AS `t`JOIN `devis_traducteur` as `dt` ON `dt`.`id_traducteur`=`t`.`id` RIGHT JOIN devis as `d` ON`d`.`id`=`dt`.`id_devis` WHERE `d`.`fichier`!=''";
+
+        $data = $conn->query($query);
+    return $data;
+    }
+    public function get_cv()
+    {
+        $this->db_connect();
+        $conn = $this->get_conn(); 
+        $query = "SELECT * FROM `traducteur` where `cv`!=''";
+
+        $data = $conn->query($query);
+    return $data;
+    }
+    public function supprimer_document($id)
     {
        
         $this->db_connect();
-        $conn = $this->get_conn();
-        $data;
-        
-    $query = "SELECT * FROM client as c LEFT JOIN users as u on `c`.`user`=`u`.`username`";
+        $conn = $this->get_conn(); 
+        $query = "UPDATE `devis` SET `fichier`=NULL WHERE `id`='$id'";
+        $conn->query($query);
 
-    $data = $conn->query($query);
-    return $data;
+    
     }
+    
 
 }

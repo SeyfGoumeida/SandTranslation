@@ -1,5 +1,6 @@
 <?php
-class DashboardClientModel
+
+class DashboardModel
 {
     
     private $servername = "localhost";
@@ -37,21 +38,13 @@ class DashboardClientModel
         $this->conn->close();
     }
 
+
+
     public function get_conn()
     {
         return $this->conn;
-    }
-    public function get_client()
-    {
-       
-        $this->db_connect();
-        $conn = $this->get_conn();
-        $data;
-        
-    $query = "SELECT * FROM client as c LEFT JOIN users as u on `c`.`user`=`u`.`username`";
 
-    $data = $conn->query($query);
-    return $data;
     }
-
+  
+   
 }

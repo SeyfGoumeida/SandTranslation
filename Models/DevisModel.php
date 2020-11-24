@@ -18,7 +18,7 @@ class DevisModel
         $type = $row['type'];
 
         $_SESSION['id_traducteur'] = $id;
-        $sql = "SELECT * FROM `devis` WHERE `type`='$type' and (`Lng_src` IN ( SELECT `language` FROM `lng_traducteur` WHERE `traducteur_id`='$id')and`Lng_dest` IN ( SELECT `language` FROM `lng_traducteur` WHERE `traducteur_id`='$id'))and ( `id` NOT IN( SELECT `id_devis` FROM `devis_traducteur`))";
+        $sql = "SELECT * FROM `devis` WHERE `type`='$type' and (`Lng_src` IN ( SELECT `language` FROM `lng_traducteur` WHERE `traducteur_id`='$id')and`Lng_dest` IN ( SELECT `language` FROM `lng_traducteur` WHERE `traducteur_id`='$id'))and ( `id` NOT IN( SELECT `id_devis` FROM `devis_traducteur` where `id_traducteur`='$id' ))";
         if ($result2 = $this->home_model->get_conn()->query($sql)) {return $result2;
 
         };

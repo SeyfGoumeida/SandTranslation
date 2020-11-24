@@ -12,6 +12,7 @@ class DevisView
     <meta name="Traduction_de_documents" />
     <link href="CSS/MyCSS.css" rel="stylesheet" type="text/css" />
     <script src="scripts/Script.js"></script>
+    
 
 </head>
 <!--------------------------------------TITLE---------------------------------------------->
@@ -71,7 +72,7 @@ class DevisView
 
             
             <?php if (isset($_SESSION['email'])) {;?>
-                <li><a href="./Devis.php">Devis</a>
+                <li><a href="./Devis.php">Devis/Traduction</a>
 
                 </li> 
             <?php }?>
@@ -122,7 +123,7 @@ class DevisView
     {
         if ($_SESSION['traducteur'] == 1) {
             ?>
-    <form action='Models/AccepterModel.php' method='POST'>
+    <form action='Models/AccepterModel.php' method='POST'enctype="multipart/form-data">
 
         <table id="Traduc">
             <tr>
@@ -219,9 +220,6 @@ class DevisView
                   <td>
                 <input type="file" value="file" name="file" required>
                 </td>
-
-
-
                 <input value="' . $id . '" name="id_devis" type="hidden">
 
               </tr>';
