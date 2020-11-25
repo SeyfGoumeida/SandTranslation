@@ -17,15 +17,9 @@ class DashboardTraducteurControler
 
     public function Showpage()
     {
-        
-        if (isset($_SESSION['username'])) {
-
         $this->V1->Header();
         $this->V1->Title();
         $this->V1->Logo();
         $this->V1->Traducteur($this->dashboardtraducteur_model->get_traducteur());
-    }else header("Location: Admin.php");
-
-
     }
 }

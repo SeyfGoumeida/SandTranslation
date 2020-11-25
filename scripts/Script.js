@@ -76,14 +76,3 @@ function DossierOnTraitement() {
 }
 /*-----------------captcha-------------------*/
 // Captcha Script
-/*-----------------traducteur-------------------*/
-
-function gettraducteur() {
-    document.getElementById("text").innerHTML =
-        document.getElementById("mySelect").selectedIndex;
-}
-
-function getclient() {
-    document.getElementById("textclient").innerHTML =
-        document.getElementById("mySelectclient").selectedIndex;
-}

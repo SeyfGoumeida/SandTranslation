@@ -66,7 +66,7 @@ class ListeTraducteurView
 
             </li>
             <?php if (isset($_SESSION['email'])) {;?>
-                <li><a href="./Devis.php">Devis/Traduction</a>
+                <li><a href="./Devis.php">Devis</a>
 
                 </li> 
                 <?php }?>

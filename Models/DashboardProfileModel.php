@@ -60,7 +60,7 @@ class DashboardProfileModel
     {
        
         $this->db_connect();
-        $sql = "SELECT * FROM `devis`WHERE `username`='$client' and `id` NOT IN  (SELECT `id_devis`FROM `devis_traducteur` WHERE  `username`='$client' and `done`=1)";
+        $sql = "SELECT * FROM `devis`WHERE `username`='b' and `id` NOT IN  (SELECT `id_devis`FROM `devis_traducteur` WHERE  `username`='b' and `done`=1)";
         $result = $this->get_conn()->query($sql);
         
         return $result;

@@ -50,7 +50,7 @@ class DashboardTraducteurModel
         $conn = $this->get_conn();
         $data;
         
-        $query = "SELECT * FROM traducteur as t LEFT JOIN users as u on `t`.`user`=`u`.`username`";
+    $query = "SELECT * FROM traducteur ";
 
     $data = $conn->query($query);
     return $data;

@@ -52,15 +52,6 @@ class DashboardDocumentModel
         $data = $conn->query($query);
     return $data;
     }
-    public function get_cv()
-    {
-        $this->db_connect();
-        $conn = $this->get_conn(); 
-        $query = "SELECT * FROM `traducteur` where `cv`!=''";
-
-        $data = $conn->query($query);
-    return $data;
-    }
     public function supprimer_document($id)
     {
        
@@ -71,6 +62,5 @@ class DashboardDocumentModel
 
     
     }
-    
 
 }

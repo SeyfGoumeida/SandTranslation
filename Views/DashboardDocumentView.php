@@ -29,34 +29,33 @@ class DashboardDocumentView
         ?>
 
 <body>
-    
+    <div Class="Dashnav" >
 
-    
-<ul class="Dashul">
-    <li class="Dashli"><h1><a href="Dashboard.php">Dashboard</a> </h1></li>
-    <li class="Dashli"><h2><a href="DashboardStatistique.php">Statistique</a></h2></li>
-    <li class="Dashli"><h2><a href="DashboardClient.php">Clients</a></h2></li>
-    <li class="Dashli"><h2><a href="DashboardTraducteur.php">Traducteurs</a></h2></li>
-    <li class="Dashli"><h2><a href="DashboardDocument.php">Documents</a></h2></li>
-    <li class="Dashli">
-   
-    <?php if (isset($_SESSION['username']) ) {;?>
-    <?php if ($_SESSION['username']=="admin") {;?>  
-            <form action="php\LogOutAdmin.php" method="POST" >
-                <button type="submit" >Deconnecter</button>
-            </form>   
-    <?php }?>
-    <?php }?>
-    </li>  
+        <a href="index.php"><img id="logo" src="./Img/Sand-Logo.png" alt="Traslation logo" ></a>
+        <?php if (isset($_SESSION['email'])) {;?>
+        <a href="EditProfil.php"> <img id="profil" src="./Img/Profil.webp" alt="Instagram"></a>
+        <?php }?>
+
+        <a href="linkedin.com"><img id="page" src="./Img/Linkedin.png" alt="Linkedin"></a>
+        <a href="facebook.com"> <img id="page" src="./Img/Facebook.png" alt="Facebook"></a>
+        <a href="instagram.com"><img id="page" src="./Img/Instagram.png" alt="Instagram"></a>
+        <a href="twitter.com"><img id="page" src="./Img/Twitter.png" alt="Twitter"></a>
+    </div>
+
+    <ul class="Dashul">
+        
+    <li class="Dashli"><a href="#Statistique">Statistique</a></li>
+    <li class="Dashli"><a href="DashboardClient.php">Clients</a></li>
+    <li class="Dashli"><a href="DashboardTraducteur.php">Traducteurs</a></li>
+    <li class="Dashli"><a href="DashboardDocument.php">Documents</a></li>
     </ul>
 
-    
+    <div class="Dash" >
     <?php
 }public function Document($data)
 {
     ?>
-<div class="Dash" >
-<h1>La Liste des documents devis ou traduits </h1>
+
     <table id="Traduc">
         <tr>
              <td> Devis/Traduction </td>
@@ -64,7 +63,7 @@ class DashboardDocumentView
             <td> Username Traducteur  </td>
             <td> Date de soumission </td>
             <td> Document </td>
-            <td> Supprimer CV </td>
+            <td> Supprimer Document </td>
             <td> Document </td>
             
             
@@ -79,13 +78,13 @@ class DashboardDocumentView
         $type = $row["type"];
         $done = $row["done"];
         $id = $row["id"];
-        
 
+        
       
 
         echo '<tr>
                 
-              <td>';if($row["done"]==1){echo 'Traduction';}else{ echo 'Devis';} echo'</td>
+              <td>';if($done=="1"){echo 'Traduction';}else{ echo 'Devis';} echo'</td>
               <td>' . $nomclient . '</td>
               <td>' . $nomtraducteur . '</td>
               <td>' . $date . '</td>
@@ -103,53 +102,6 @@ class DashboardDocumentView
 
     };
     $data->free();
-    
-    ?>
-    </table>
-    </div>
-   
-    <?php
-}public function CV($data)
-{
-    ?>
- <div class="Dash" >
- <h1>La Liste CVs </h1>
-
-    <table id="Traduc">
-        <tr>
-            <td> nom </td>
-            <td> prenom </td>
-            <td> Username   </td>
-            <td> CV </td>
-            <td> Supprimer Document </td>
-  
-        </tr>
-        <?php
-
-    while ($row = $data->fetch_assoc()) {
-        $username = $row['user'];
-        $nom = $row["nom"];
-        $prenom = $row["prenom"];
-        $cv = $row["cv"];
-        
-
-        echo '<tr>
-     
-              
-              <td>' . $nom . '</td>
-              <td>' . $prenom . '</td>
-              <td>' . $username . '</td>
-              <td>' . $cv . '</td>
-              <form method="POST" action="Models/CvModel.php">
-                  <input type="hidden" value="' . $username . '" name="username"> </input>
-                  <td ><button type="submit" value="Submit" name=> supprimer </button></td>
-                </form>
-
-          </tr>';
-          
-    };
-    $data->free();
-    
     ?>
     </table>
     </div>

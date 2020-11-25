@@ -17,11 +17,9 @@ class DashboardClientControler
 
     public function Showpage()
     {
-        if (isset($_SESSION['username'])) {
         $this->V1->Header();
         $this->V1->Title();
         $this->V1->Logo();
         $this->V1->Client($this->dashboardclient_model->get_client());
-        }else header("Location: Admin.php");
     }
 }

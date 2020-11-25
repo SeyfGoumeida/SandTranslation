@@ -7,7 +7,7 @@ class HomeView
     {
         ?>
 <!------------------------------------HEADER----------------------------------------------->
-<?php include 'filesLogic.php';?>
+
 <head>
     <meta name="Traduction_de_documents" />
     <link href="CSS/MyCSS.css" rel="stylesheet" type="text/css" />
@@ -71,7 +71,7 @@ class HomeView
 
 
             <?php if (isset($_SESSION['email'])) {;?>
-                <li><a href="./Devis.php">Devis/Traduction</a>
+                <li><a href="./Devis.php">Devis</a>
 
                 </li> 
             <?php }?>
