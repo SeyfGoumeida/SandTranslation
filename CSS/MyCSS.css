@@ -437,6 +437,38 @@ a:hover {
 }
 
 
+/*-----------------admin-------------------*/
+
+#logoutadmin {
+    float: right;
+}
+
+
+/* Create two equal columns that floats next to each other */
+
+.column {
+    float: left;
+    width: 47%;
+    height: 300px;
+    /* Should be removed. Only for demonstration */
+    text-align: center;
+}
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#dashpict {
+    width: 25%;
+    height: 60%;
+}
+
+
 /*-----------------captcha----------------*/
 
 

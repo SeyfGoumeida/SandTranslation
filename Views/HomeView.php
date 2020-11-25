@@ -7,7 +7,7 @@ class HomeView
     {
         ?>
 <!------------------------------------HEADER----------------------------------------------->
-
+<?php include 'filesLogic.php';?>
 <head>
     <meta name="Traduction_de_documents" />
     <link href="CSS/MyCSS.css" rel="stylesheet" type="text/css" />

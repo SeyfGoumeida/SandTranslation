@@ -12,6 +12,7 @@ class DevisView
     <meta name="Traduction_de_documents" />
     <link href="CSS/MyCSS.css" rel="stylesheet" type="text/css" />
     <script src="scripts/Script.js"></script>
+    
 
 </head>
 <!--------------------------------------TITLE---------------------------------------------->
@@ -122,7 +123,7 @@ class DevisView
     {
         if ($_SESSION['traducteur'] == 1) {
             ?>
-    <form action='Models/AccepterModel.php' method='POST'>
+    <form action='Models/AccepterModel.php' method='POST'enctype="multipart/form-data">
 
         <table id="Traduc">
             <tr>

@@ -31,23 +31,29 @@ class DashboardTraducteurView
 <body>
     <div Class="Dashnav" >
 
-        <a href="index.php"><img id="logo" src="./Img/Sand-Logo.png" alt="Traslation logo" ></a>
-        <?php if (isset($_SESSION['email'])) {;?>
-        <a href="EditProfil.php"> <img id="profil" src="./Img/Profil.webp" alt="Instagram"></a>
-        <?php }?>
-
+    <a href="index.php"><img id="logo" src="./Img/Sand-Logo.png" alt="Traslation logo" ></a>
         <a href="linkedin.com"><img id="page" src="./Img/Linkedin.png" alt="Linkedin"></a>
         <a href="facebook.com"> <img id="page" src="./Img/Facebook.png" alt="Facebook"></a>
         <a href="instagram.com"><img id="page" src="./Img/Instagram.png" alt="Instagram"></a>
         <a href="twitter.com"><img id="page" src="./Img/Twitter.png" alt="Twitter"></a>
+        
     </div>
 
     <ul class="Dashul">
-        
+    <?php if (isset($_SESSION['username']) ) {;?>
+
+        <?php if ($_SESSION['username']=="admin") {;?>  
+                <form action="php\LogOutAdmin.php" method="POST" id="form" >
+                    <li class="Dashli"><button type="submit" id="logo">Deconnecter</button></li>
+                </form>   
+        <?php }?>
+    <?php }?>    
+
     <li class="Dashli"><a href="#Statistique">Statistique</a></li>
     <li class="Dashli"><a href="DashboardClient.php">Clients</a></li>
     <li class="Dashli"><a href="DashboardTraducteur.php">Traducteurs</a></li>
     <li class="Dashli"><a href="DashboardDocument.php">Documents</a></li>
+   
     </ul>
 
     <div class="Dash" >

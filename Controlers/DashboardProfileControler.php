@@ -22,7 +22,9 @@ class DashboardProfileControler
 
     public function Showpage()
     {
-       
+      
+        if (isset($_SESSION['username'])) {
+
         $this->V1->Header();
         $this->V1->Title();
         $this->V1->Logo();
@@ -34,6 +36,8 @@ class DashboardProfileControler
         {$this->V1->Profile($this->dashboardProfile_model->get_traducteur($this->traducteur));
         $this->V1->Devis($this->dashboardProfile_model->get_devis_traducteur($this->traducteur));
         $this->V1->Traduction($this->dashboardProfile_model->get_traduction_traducteur($this->traducteur));};
+    }else header("Location: Admin.php");
+
 
     }
 }

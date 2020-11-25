@@ -1,5 +1,6 @@
 <?php
-class AdminModel
+
+class DashboardModel
 {
     
     private $servername = "localhost";
@@ -42,14 +43,8 @@ class AdminModel
     public function get_conn()
     {
         return $this->conn;
-    }
-
-    public function Session($username,$psw)
-    {
-    session_start();
-    $_SESSION['username']= $username;
-    $_SESSION['psw'] =$psw;                            
 
     }
-
+  
+   
 }

@@ -149,11 +149,11 @@ class RecrutementView
 
 
                 <label for="ref"><b>Fichier de referance 1 : </b></label>
-                <input type="file" placeholder="Justif" name="Justif" accept="application/pdf">
+                <input type="file" placeholder="Justif" name="Justif1" accept="application/pdf">
                 <label for="ref"><b>Fichier de referance 2 :</b></label>
-                <input type="file" placeholder="Justif" name="Justif" accept="application/pdf">
+                <input type="file" placeholder="Justif" name="Justif2" accept="application/pdf">
                 <label for="ref"><b>Fichier de referance 3 :</b></label>
-                <input type="file" placeholder="Justif" name="Justif" accept="application/pdf">
+                <input type="file" placeholder="Justif" name="Justif3" accept="application/pdf">
                 <label for="phone"><b>traducteur assermenté : </b></label>
                 <input type="checkbox" placeholder="Asser" name="Asser" id="myCheck" onclick=" Assermente()">
                 <div id="Justif">

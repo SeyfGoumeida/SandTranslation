@@ -18,11 +18,14 @@ class DashboardDocumentControler
 
     public function Showpage()
     {
+        if (isset($_SESSION['username'])) {
         $this->V1->Header();
         $this->V1->Title();
         $this->V1->Logo();
         $this->V1->Document($this->dashboardDocument_model->get_document());
         $this->dashboardDocument_model->supprimer_document($this->document);
+    }else header("Location: Admin.php");
+
 
     }
 }
