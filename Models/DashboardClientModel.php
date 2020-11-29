@@ -37,8 +37,6 @@ class DashboardClientModel
         $this->conn->close();
     }
 
-
-
     public function get_conn()
     {
         return $this->conn;
@@ -50,7 +48,7 @@ class DashboardClientModel
         $conn = $this->get_conn();
         $data;
         
-    $query = "SELECT * FROM client ";
+    $query = "SELECT * FROM client as c LEFT JOIN users as u on `c`.`user`=`u`.`username`";
 
     $data = $conn->query($query);
     return $data;

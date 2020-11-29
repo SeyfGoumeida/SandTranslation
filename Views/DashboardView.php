@@ -49,11 +49,11 @@ class DashboardView
         </div>
         <div class="column" ">
             <h2>Clients</h2>
-            <a href="DashboardTraducteur.php"><img id="dashpict" src="./Img/client.png" alt="Instagram"></a>
+            <a href="DashboardClient.php"><img id="dashpict" src="./Img/client.png" alt="Instagram"></a>
         </div>
         <div class="column" ">
             <h2>Traducteurs</h2>
-            <a href="DashboardClient.php"><img id="dashpict" src="./Img/traducteur.png" alt="Twitter"></a>
+            <a href="DashboardTraducteur.php"><img id="dashpict" src="./Img/traducteur.png" alt="Twitter"></a>
         </div>
     </div>
     

@@ -29,31 +29,24 @@ class DashboardProfileView
         ?>
 
 <body>
-    <div Class="Dashnav" >
-    <a href="index.php"><img id="logo" src="./Img/Sand-Logo.png" alt="Traslation logo" ></a>
-        
-
-        <a href="linkedin.com"><img id="page" src="./Img/Linkedin.png" alt="Linkedin"></a>
-        <a href="facebook.com"> <img id="page" src="./Img/Facebook.png" alt="Facebook"></a>
-        <a href="instagram.com"><img id="page" src="./Img/Instagram.png" alt="Instagram"></a>
-        <a href="twitter.com"><img id="page" src="./Img/Twitter.png" alt="Twitter"></a>
-    </div>
-    <?php
     
-    ?>
-
-    <ul class="Dashul">
+    
+<ul class="Dashul">
+    <li class="Dashli"><h1><a href="Dashboard.php">Dashboard</a> </h1></li>
+    <li class="Dashli"><h2><a href="#Statistique">Statistique</a></h2></li>
+    <li class="Dashli"><h2><a href="DashboardClient.php">Clients</a></h2></li>
+    <li class="Dashli"><h2><a href="DashboardTraducteur.php">Traducteurs</a></h2></li>
+    <li class="Dashli"><h2><a href="DashboardDocument.php">Documents</a></h2></li>
+    <li class="Dashli">
+   
     <?php if (isset($_SESSION['username']) ) {;?>
     <?php if ($_SESSION['username']=="admin") {;?>  
-            <form action="php\LogOutAdmin.php" method="POST" id="form" >
-                <li class="Dashli"><button type="submit" id="logo">Deconnecter</button></li>
+            <form action="php\LogOutAdmin.php" method="POST" >
+                <button type="submit" >Deconnecter</button>
             </form>   
     <?php }?>
-    <?php }?>  
-    <li class="Dashli"><a href="#Statistique">Statistique</a></li>
-    <li class="Dashli"><a href="DashboardClient.php">Clients</a></li>
-    <li class="Dashli"><a href="DashboardTraducteur.php">Traducteurs</a></li>
-    <li class="Dashli"><a href="DashboardDocument.php">Documents</a></li>
+    <?php }?>
+    </li>  
     </ul>
     <div class="Dash" >
     <?php
