@@ -50,12 +50,13 @@ class DashboardDocumentView
     </li>  
     </ul>
 
-    <div class="Dash" >
+    
     <?php
 }public function Document($data)
 {
     ?>
-
+<div class="Dash" >
+<h1>La Liste des documents devis ou traduits </h1>
     <table id="Traduc">
         <tr>
              <td> Devis/Traduction </td>
@@ -63,7 +64,7 @@ class DashboardDocumentView
             <td> Username Traducteur  </td>
             <td> Date de soumission </td>
             <td> Document </td>
-            <td> Supprimer Document </td>
+            <td> Supprimer CV </td>
             <td> Document </td>
             
             
@@ -78,8 +79,8 @@ class DashboardDocumentView
         $type = $row["type"];
         $done = $row["done"];
         $id = $row["id"];
-
         
+
       
 
         echo '<tr>
@@ -102,6 +103,53 @@ class DashboardDocumentView
 
     };
     $data->free();
+    
+    ?>
+    </table>
+    </div>
+   
+    <?php
+}public function CV($data)
+{
+    ?>
+ <div class="Dash" >
+ <h1>La Liste CVs </h1>
+
+    <table id="Traduc">
+        <tr>
+            <td> nom </td>
+            <td> prenom </td>
+            <td> Username   </td>
+            <td> CV </td>
+            <td> Supprimer Document </td>
+  
+        </tr>
+        <?php
+
+    while ($row = $data->fetch_assoc()) {
+        $username = $row['user'];
+        $nom = $row["nom"];
+        $prenom = $row["prenom"];
+        $cv = $row["cv"];
+        
+
+        echo '<tr>
+     
+              
+              <td>' . $nom . '</td>
+              <td>' . $prenom . '</td>
+              <td>' . $username . '</td>
+              <td>' . $cv . '</td>
+              <form method="POST" action="Models/CvModel.php">
+                  <input type="hidden" value="' . $username . '" name="username"> </input>
+                  <td ><button type="submit" value="Submit" name=> supprimer </button></td>
+                </form>
+
+          </tr>';
+          
+    };
+    $data->free();
+    
     ?>
     </table>
     </div>
