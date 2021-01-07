@@ -45,7 +45,7 @@ class DashboardView
         </div>
         <div class="column" ">
             <h2>Statistiques</h2>
-            <a href=""> <img id="dashpict" src="./Img/statistique.png" alt="Facebook"></a>
+            <a href="DashboardStatistique.php"> <img id="dashpict" src="./Img/statistique.png" alt="Facebook"></a>
         </div>
         <div class="column" ">
             <h2>Clients</h2>

@@ -33,7 +33,7 @@ class DashboardProfileView
     
 <ul class="Dashul">
     <li class="Dashli"><h1><a href="Dashboard.php">Dashboard</a> </h1></li>
-    <li class="Dashli"><h2><a href="#Statistique">Statistique</a></h2></li>
+    <li class="Dashli"><h2><a href="DashboardStatistique.php">Statistique</a></h2></li>
     <li class="Dashli"><h2><a href="DashboardClient.php">Clients</a></h2></li>
     <li class="Dashli"><h2><a href="DashboardTraducteur.php">Traducteurs</a></h2></li>
     <li class="Dashli"><h2><a href="DashboardDocument.php">Documents</a></h2></li>

@@ -14,6 +14,5 @@ echo''.$username;
    $dashboarddocument_model->get_conn()->query($sql);
 
    
-     
    header("Location: ../DashboardDocument.php");
   ?>
