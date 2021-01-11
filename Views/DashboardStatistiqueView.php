@@ -59,25 +59,33 @@ class DashboardStatistiqueView
 <div class="Dash" >
     <div class="row">
         <div class="column" >
-            <h1> Devis</h1>
-            <h2> <?php echo ' nombre de devis : '.$devis; ?></h2>
+        <form action="DashboardStatistique.php" method="POST">
+        Entre : <input type="date" name="avant"> Et :<input type="date" name="apres">
+        <input type="submit"  value="Choisir la date ">
+        </form>
         </div>
         <div class="column" >
-            <h1> Traduction</h1>
-            <h2> <?php echo ' nombre de Traduction : '.$traduction; ?></h2>
+
+            <h1> Devis et Traduction</h1>
+            <form action="DashboardStatistique.php" method="POST">
+            <h2> <?php echo ' nombre de traduction : '.$traduction; ?></h2>
+            <h2> <?php echo ' nombre de devis : '.$devis; ?></h2>
+           
         </div>
 
         <div class="column" >
             
             
             <label for="Langues"><b>Choisir traducteur : </b></label>
-            <form action="DashboardStatistique.php" method="POST">
+           
                 <select name="devistraducteur" id="mySelect" >
                     <?php
                     while ($row = $traducteur->fetch_assoc()) {
                         echo '<option value="'. $row['user'] .'">' . $row['user'] . '</option> ';
                     }?>
                 </select>
+                Entre : <input type="date" name="avant"> Et :<input type="date" name="apres">
+ 
                 <input type="submit" id="log" onclick="gettraducteur()" value="appliquer sur ce traducteur ">
 
                 
@@ -88,7 +96,7 @@ class DashboardStatistiqueView
         <div class="column" >
             
                 <h2> <?php echo ' nombre de devis : '.$devis_traducteur; ?></h2>
-                <h2> <?php echo ' nombre de Traduction : '.$traduction_traducteur; ?></h2>
+                <h2> <?php echo ' nombre de traduction : '.$traduction_traducteur; ?></h2>
             </form>
         </div>
 
@@ -103,6 +111,7 @@ class DashboardStatistiqueView
                         echo '<option value="'. $row['user'] .'">' . $row['user'] . '</option> ';
                     }?>
                 </select>
+                Entre : <input type="date" name="avant" > Et :<input type="date" name="apres">
                 <input type="submit" id="log" onclick="getclient()" value="Appliquer sur ce client ">
 
                 
@@ -113,7 +122,7 @@ class DashboardStatistiqueView
         <div class="column" >
             
                 <h2> <?php echo ' nombre de devis : '.$devis_client; ?></h2>
-                <h2> <?php echo ' nombre de Traduction : '.$traduction_client; ?></h2>
+                <h2> <?php echo ' nombre de traduction : '.$traduction_client; ?></h2>
             </form>
         </div>
     </div>
