@@ -220,9 +220,6 @@ class DevisView
                   <td>
                 <input type="file" value="file" name="file" required>
                 </td>
-
-
-
                 <input value="' . $id . '" name="id_devis" type="hidden">
 
               </tr>';

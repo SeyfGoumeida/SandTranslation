@@ -449,7 +449,7 @@ a:hover {
 .column {
     float: left;
     width: 47%;
-    height: 300px;
+    height: 600px;
     /* Should be removed. Only for demonstration */
     text-align: center;
 }

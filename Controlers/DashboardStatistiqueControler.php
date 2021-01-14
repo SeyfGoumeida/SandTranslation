@@ -18,7 +18,9 @@ class DashboardStatistiqueControler
     public function Showpage($id_traducteur,$id_client)
     {
         if (isset($_SESSION['username'])) {
-        $this->V1->Header();
+        $this->V1->Header($this->dashboardStatistique_model->get_devis(),$this->dashboardStatistique_model->get_traduction(),
+                          $this->dashboardStatistique_model->get_devis_client($id_client),$this->dashboardStatistique_model->get_traduction_client($id_client)
+                          ,$this->dashboardStatistique_model->get_devis_traducteur($id_traducteur),$this->dashboardStatistique_model->get_traduction_traducteur($id_traducteur));
         $this->V1->Title();
         $this->V1->Logo();
         $this->V1->Statistique($this->dashboardStatistique_model->get_devis(),$this->dashboardStatistique_model->get_traduction(),

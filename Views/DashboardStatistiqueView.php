@@ -3,15 +3,155 @@ session_start();
 class DashboardStatistiqueView
 {
 
-    public function Header()
+    public function Header($devis,$traduction,$devis_client,$traduction_client,$devis_traducteur,$traduction_traducteur)
     {
-        ?>
+?>
 <!------------------------------------HEADER----------------------------------------------->
 
 <head>
     <meta name="Traduction_de_documents" />
     <link href="CSS/MyCSS.css" rel="stylesheet" type="text/css" />
     <script src="scripts/Script.js"></script>
+    <!--      statistique-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['bar']
+    });
+    google.charts.setOnLoadCallback(drawall);
+    google.charts.setOnLoadCallback(drawclient);
+    google.charts.setOnLoadCallback(drawtraducteur);
+
+    function drawall() {
+        var data = new google.visualization.arrayToDataTable([
+            ['Type', 'Nombre',{ role: "style" }] <?php
+                echo ",[' ', ,' ']";
+                echo ",['Devis', " . $devis .
+                    ",'silver']";
+                echo ",['Traduction', " . $traduction .
+                    ",'gold']";
+                echo ",[' ', ,' ']";
+        ?>
+
+        ]);
+        var options = {
+            width: 600,
+           height: 400,
+            legend: {
+                position: 'none'
+            },
+            chart: {
+                title: '',
+                subtitle: ''
+            },
+            axes: {
+                x: {
+                    0: {
+                        side: '',
+                        label: ''
+                    }
+                }
+            },
+            bar: {
+                groupWidth: "90%"
+            },
+            hAxis: {title: 'Nombre', titleTextStyle: {color: '#dbb466'}},
+           colors: ['#dbb466','silver'],
+           backgroundColor: { fill: "#162936" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+
+    function drawclient() {
+        var data = new google.visualization.arrayToDataTable([
+            ['Type', 'Nombre',{ role: "style" }] <?php
+                echo ",[' ', ,' ']";
+                echo ",['Devis', " . $devis_client .
+                    ",'silver']";
+                echo ",['Traduction', " . $traduction_client .
+                    ",'gold']";
+                echo ",[' ', ,' ']";
+        ?>
+
+        ]);
+        var options = {
+            width: 600,
+           height: 400,
+            legend: {
+                position: 'none'
+            },
+            chart: {
+                title: '',
+                subtitle: ''
+            },
+            axes: {
+                x: {
+                    0: {
+                        side: '',
+                        label: ''
+                    }
+                }
+            },
+            bar: {
+                groupWidth: "90%"
+            },
+            hAxis: {title: 'Nombre', titleTextStyle: {color: '#dbb466'}},
+           colors: ['#dbb466','silver'],
+           backgroundColor: { fill: "#162936" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_client'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+
+    function drawtraducteur() {
+        var data = new google.visualization.arrayToDataTable([
+            ['Type', 'Nombre',{ role: "style" }] <?php
+                echo ",[' ', ,' ']";
+                echo ",['Devis', " . $devis_traducteur .
+                    ",'silver']";
+                echo ",['Traduction', " . $traduction_traducteur .
+                    ",'gold']";
+                echo ",[' ', ,' ']";
+        ?>
+
+        ]);
+        var options = {
+            width: 600,
+           height: 400,
+            legend: {
+                position: 'none'
+            },
+            chart: {
+                title: '',
+                subtitle: ''
+            },
+            axes: {
+                x: {
+                    0: {
+                        side: '',
+                        label: ''
+                    }
+                }
+            },
+            bar: {
+                groupWidth: "90%"
+            },
+            hAxis: {title: 'Nombre', titleTextStyle: {color: '#dbb466'}},
+           colors: ['#dbb466','silver'],
+           backgroundColor: { fill: "#162936" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_traducteur'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+    </script>
+
 
 </head>
 <!--------------------------------------TITLE---------------------------------------------->
@@ -19,7 +159,7 @@ class DashboardStatistiqueView
 }
     public function Title()
     {
-        ?>
+?>
 <title> Home </title>
 <!---------------------------------------LOGO------------------------------------------------->
 <?php
@@ -56,23 +196,27 @@ class DashboardStatistiqueView
 {
 
     ?>
+     
 <div class="Dash" >
     <div class="row">
         <div class="column" >
         <form action="DashboardStatistique.php" method="POST">
         Entre : <input type="date" name="avant"> Et :<input type="date" name="apres">
         <input type="submit"  value="Choisir la date ">
+        <h2> <?php echo ' nombre de traduction : '.$traduction; ?></h2>
+        <h2> <?php echo ' nombre de devis : '.$devis; ?></h2>
         </form>
         </div>
         <div class="column" >
 
             <h1> Devis et Traduction</h1>
             <form action="DashboardStatistique.php" method="POST">
-            <h2> <?php echo ' nombre de traduction : '.$traduction; ?></h2>
-            <h2> <?php echo ' nombre de devis : '.$devis; ?></h2>
+            <div id="chart_div" style="width: 800px; height: 500px;"></div>
+           
+            
            
         </div>
-
+       
         <div class="column" >
             
             
@@ -86,18 +230,18 @@ class DashboardStatistiqueView
                 </select>
                 Entre : <input type="date" name="avant"> Et :<input type="date" name="apres">
  
-                <input type="submit" id="log" onclick="gettraducteur()" value="appliquer sur ce traducteur ">
-
+                <input type="submit" onclick="gettraducteur()" value="appliquer sur ce traducteur ">
+                <h2> <?php echo ' nombre de devis : '.$devis_traducteur; ?></h2>
+                <h2> <?php echo ' nombre de traduction : '.$traduction_traducteur; ?></h2>
                 
             </form>
         
         </div>
 
         <div class="column" >
+        <div id="chart_traducteur" style="width: 800px; height: 500px;"></div>
+               
             
-                <h2> <?php echo ' nombre de devis : '.$devis_traducteur; ?></h2>
-                <h2> <?php echo ' nombre de traduction : '.$traduction_traducteur; ?></h2>
-            </form>
         </div>
 
         <div class="column" >
@@ -112,18 +256,18 @@ class DashboardStatistiqueView
                     }?>
                 </select>
                 Entre : <input type="date" name="avant" > Et :<input type="date" name="apres">
-                <input type="submit" id="log" onclick="getclient()" value="Appliquer sur ce client ">
-
+                <input type="submit"  onclick="getclient()" value="Appliquer sur ce client ">
+                <h2> <?php echo ' nombre de devis : '.$devis_client; ?></h2>
+                <h2> <?php echo ' nombre de traduction : '.$traduction_client; ?></h2>
                 
             </form>
         
         </div>
 
         <div class="column" >
-            
-                <h2> <?php echo ' nombre de devis : '.$devis_client; ?></h2>
-                <h2> <?php echo ' nombre de traduction : '.$traduction_client; ?></h2>
-            </form>
+        <div id="chart_client" style="width: 800px; height: 500px;"></div>
+ 
+
         </div>
     </div>
 </div>
