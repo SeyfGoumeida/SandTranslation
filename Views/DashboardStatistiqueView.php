@@ -201,7 +201,7 @@ class DashboardStatistiqueView
     <div class="row">
         <div class="column" >
         <form action="DashboardStatistique.php" method="POST">
-        Entre : <input type="date" name="avant"> Et :<input type="date" name="apres">
+        Entre : <input type="date" name="apres"> Et :<input type="date" name="avant">
         <input type="submit"  value="Choisir la date ">
         <h2> <?php echo ' nombre de traduction : '.$traduction; ?></h2>
         <h2> <?php echo ' nombre de devis : '.$devis; ?></h2>
@@ -228,7 +228,7 @@ class DashboardStatistiqueView
                         echo '<option value="'. $row['user'] .'">' . $row['user'] . '</option> ';
                     }?>
                 </select>
-                Entre : <input type="date" name="avant"> Et :<input type="date" name="apres">
+                Entre : <input type="date" name="apres"> Et :<input type="date" name="avant">
  
                 <input type="submit" onclick="gettraducteur()" value="appliquer sur ce traducteur ">
                 <h2> <?php echo ' nombre de devis : '.$devis_traducteur; ?></h2>
@@ -255,7 +255,7 @@ class DashboardStatistiqueView
                         echo '<option value="'. $row['user'] .'">' . $row['user'] . '</option> ';
                     }?>
                 </select>
-                Entre : <input type="date" name="avant" > Et :<input type="date" name="apres">
+                Entre : <input type="date" name="apres"> Et :<input type="date" name="avant">
                 <input type="submit"  onclick="getclient()" value="Appliquer sur ce client ">
                 <h2> <?php echo ' nombre de devis : '.$devis_client; ?></h2>
                 <h2> <?php echo ' nombre de traduction : '.$traduction_client; ?></h2>

@@ -30,7 +30,6 @@ class BlogView
     <div>
 
         <a href="index.php"><img id="logo" src="./Img/Sand-Logo.png" alt="Traslation logo"></a>
-
         <?php if (isset($_SESSION['email'])) {;?>
         <a href="EditProfil.php"> <img id="profil" src="./Img/Profil.webp" alt="Instagram"></a>
         <?php } ?>
@@ -65,7 +64,7 @@ class BlogView
         
         
         <?php if (isset($_SESSION['email'])) {;?>
-                <li><a href="./Devis.php">Devis</a>
+                <li><a href="./Devis.php">Devis/Traduction</a>
 
                 </li> 
         <?php }?>

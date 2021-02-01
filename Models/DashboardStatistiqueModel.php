@@ -43,11 +43,15 @@ class DashboardStatistiqueModel
     {
         return $this->conn;
     }
-    public function get_devis()
+    public function get_devis($apres,$avant)
     {
         $this->db_connect();
         $conn = $this->get_conn(); 
-        $query = "SELECT * FROM `devis`as `d` LEFT JOiN `devis_traducteur` as `dt` on `d`.`id`=`dt`.`id_devis` WHERE `d`.`id` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 )";
+        if($apres != 0|| $avant != 0)
+        $query = "SELECT * FROM `devis`as `d` LEFT JOiN `devis_traducteur` as `dt` on `d`.`id`=`dt`.`id_devis` WHERE `d`.`id` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 )  and `date` BETWEEN '$apres' and '$avant' ";
+        if($apres==0 || $avant==0)
+        $query = "SELECT * FROM `devis`as `d` LEFT JOiN `devis_traducteur` as `dt` on `d`.`id`=`dt`.`id_devis` WHERE `d`.`id` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 )  and `date`";
+
         $result= $conn->query($query);
         $cmp=0;
         while($row = $result->fetch_assoc()){
@@ -56,11 +60,15 @@ class DashboardStatistiqueModel
 
     return $cmp;
     }
-    public function get_traduction()
+    public function get_traduction($apres,$avant)
     {
         $this->db_connect();
         $conn = $this->get_conn(); 
-        $query = "SELECT * FROM `devis`as `d` LEFT JOiN `devis_traducteur` as `dt` on `d`.`id`=`dt`.`id_devis` WHERE `d`.`id` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 )";
+        if($apres != 0|| $avant != 0)
+        $query = "SELECT * FROM `devis`as `d` LEFT JOiN `devis_traducteur` as `dt` on `d`.`id`=`dt`.`id_devis` WHERE `d`.`id` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 )  and `date` BETWEEN '$apres' and '$avant'";
+        if($apres==0 || $avant==0)
+        $query = "SELECT * FROM `devis`as `d` LEFT JOiN `devis_traducteur` as `dt` on `d`.`id`=`dt`.`id_devis` WHERE `d`.`id` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) ";
+
         $result= $conn->query($query);
         $cmp=0;
         while($row = $result->fetch_assoc()){
@@ -87,11 +95,16 @@ class DashboardStatistiqueModel
     
     return $result;
     }
-    public function get_devis_traducteur($id)
+    public function get_devis_traducteur($id,$apres,$avant)
     {
         $this->db_connect();
         $conn = $this->get_conn(); 
-        $query = "SELECT * FROM  `devis_traducteur` as `dt` JOiN `traducteur` as `t` on `dt`.`id_traducteur`=`t`.`id` WHERE `dt`.`id_devis` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `t`.`user`='$id' ";
+        
+        if($apres != 0|| $avant != 0)
+        $query = "SELECT * FROM  `devis_traducteur` as `dt` JOiN `traducteur` as `t` on `dt`.`id_traducteur`=`t`.`id` LEFT JOIN `devis` as `d` on `d`.`id`=`dt`.`id_devis` WHERE `dt`.`id_devis` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `t`.`user`='$id' and `date` BETWEEN '$apres' and '$avant' ";
+        if($apres == 0|| $avant == 0)
+        $query = "SELECT * FROM  `devis_traducteur` as `dt` JOiN `traducteur` as `t` on `dt`.`id_traducteur`=`t`.`id` LEFT JOIN `devis` as `d` on `d`.`id`=`dt`.`id_devis` WHERE `dt`.`id_devis` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `t`.`user`='$id' ";
+
         $result= $conn->query($query);
         $cmp=0;
         while($row = $result->fetch_assoc()){
@@ -100,11 +113,15 @@ class DashboardStatistiqueModel
 
     return $cmp;
     }
-    public function get_devis_client($id)
+    public function get_devis_client($id,$apres,$avant)
     {
         $this->db_connect();
         $conn = $this->get_conn(); 
+        if($apres != 0|| $avant != 0)
+        $query = "SELECT * FROM  `devis` as `d` JOiN `client` as `c` on `d`.`username`=`c`.`user` LEFT JOIN `devis_traducteur` as `dt` on `dt`.`id_devis`=`d`.`id` WHERE `d`.`id` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `c`.`user`='$id' and `date` BETWEEN '$apres' and '$avant' ";
+        if($apres == 0|| $avant == 0)
         $query = "SELECT * FROM  `devis` as `d` JOiN `client` as `c` on `d`.`username`=`c`.`user` LEFT JOIN `devis_traducteur` as `dt` on `dt`.`id_devis`=`d`.`id` WHERE `d`.`id` NOT IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `c`.`user`='$id' ";
+
         $result= $conn->query($query);
         $cmp=0;
         while($row = $result->fetch_assoc()){
@@ -113,11 +130,15 @@ class DashboardStatistiqueModel
 
     return $cmp;
     }
-    public function get_traduction_traducteur($id)
+    public function get_traduction_traducteur($id,$apres,$avant)
     {
         $this->db_connect();
-        $conn = $this->get_conn(); 
-        $query = "SELECT * FROM  `devis_traducteur` as `dt` JOiN `traducteur` as `t` on `dt`.`id_traducteur`=`t`.`id` WHERE `dt`.`id_devis` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `t`.`user`='$id' ";
+        $conn = $this->get_conn();
+        if($apres != 0|| $avant != 0)
+        $query = "SELECT * FROM  `devis_traducteur` as `dt` JOiN `traducteur` as `t` on `dt`.`id_traducteur`=`t`.`id` LEFT JOIN `devis` as `d` on `d`.`id`=`dt`.`id_devis` WHERE `dt`.`id_devis` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `t`.`user`='$id' and `date` BETWEEN '$apres' and '$avant' ";
+        if($apres == 0|| $avant == 0)
+        $query = "SELECT * FROM  `devis_traducteur` as `dt` JOiN `traducteur` as `t` on `dt`.`id_traducteur`=`t`.`id` LEFT JOIN `devis` as `d` on `d`.`id`=`dt`.`id_devis` WHERE `dt`.`id_devis` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `t`.`user`='$id' ";
+
         $result= $conn->query($query);
         $cmp=0;
         while($row = $result->fetch_assoc()){
@@ -127,11 +148,15 @@ class DashboardStatistiqueModel
     return $cmp;
     }
   
-    public function get_traduction_client($id)
+    public function get_traduction_client($id,$apres,$avant)
     {
         $this->db_connect();
         $conn = $this->get_conn(); 
+        if($apres != 0|| $avant != 0)
+        $query = "SELECT * FROM  `devis` as `d` JOiN `client` as `c` on `d`.`username`=`c`.`user` LEFT JOIN `devis_traducteur` as `dt` on `dt`.`id_devis`=`d`.`id` WHERE `d`.`id` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `c`.`user`='$id' and `date` BETWEEN '$apres' and '$avant' ";
+        if($apres == 0|| $avant == 0)
         $query = "SELECT * FROM  `devis` as `d` JOiN `client` as `c` on `d`.`username`=`c`.`user` LEFT JOIN `devis_traducteur` as `dt` on `dt`.`id_devis`=`d`.`id` WHERE `d`.`id` IN (SELECT `id_devis` from `devis_traducteur` where `done`=1 ) and `c`.`user`='$id' ";
+
         $result= $conn->query($query);
         $cmp=0;
         while($row = $result->fetch_assoc()){

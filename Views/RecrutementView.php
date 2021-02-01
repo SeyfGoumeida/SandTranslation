@@ -67,7 +67,7 @@ class RecrutementView
 
             
             <?php if (isset($_SESSION['email'])) {;?>
-                <li><a href="./Devis.php">Devis</a>
+                <li><a href="./Devis.php">Devis/Traduction</a>
 
                 </li> 
             <?php }?>
